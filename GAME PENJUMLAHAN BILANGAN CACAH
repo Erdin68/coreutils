@@ -1,0 +1,55 @@
+import random
+
+def main():
+    print("✨ GAME PENJUMLAHAN BILANGAN CACAH ✨")
+    print("----------------------------------")
+    print("Peraturan:")
+    print("- Jawab soal penjumlahan berikut.")
+    print("- Skor bertambah jika benar.")
+    print("- Ketik 'stop' untuk berhenti.")
+    print("----------------------------------")
+    
+    skor = 0
+    level = input("Pilih level (mudah/sedang/sulit): ").lower()
+    
+    while level not in ["mudah", "sedang", "sulit"]:
+        print("Pilihan tidak valid. Silakan pilih mudah/sedang/sulit.")
+        level = input("Pilih level (mudah/sedang/sulit): ").lower()
+    
+    print("\n✅ Game dimulai! Selamat bermain!\n")
+    
+    while True:
+        if level == "mudah":
+            a = random.randint(0, 100)
+            b = random.randint(0, 100)
+        elif level == "sedang":
+            a = random.randint(100, 10000)
+            b = random.randint(100, 10000)
+        else:  # sulit
+            a = random.randint(10000, 1000000)
+            b = random.randint(10000, 1000000)
+        
+        jawaban_benar = a + b
+        
+        soal = f"{a} + {b} = ?"
+        print("\n" + "=" * 30)
+        print(f"Soal: {soal}")
+        tebakan = input("Jawab: ").strip()
+        
+        if tebakan.lower() == "stop":
+            print(f"\n💫 Skor akhir: {skor}")
+            print("Terima kasih sudah bermain!")
+            break
+        
+        if not tebakan.isdigit():
+            print("❌ Harap masukkan angka atau ketik 'stop'!")
+            continue
+        
+        if int(tebakan) == jawaban_benar:
+            skor += 1
+            print(f"✅ Benar! Skor: {skor}")
+        else:
+            print(f"❌ Salah! Jawaban benar: {jawaban_benar}. Skor: {skor}")
+
+if __name__ == "__main__":
+    main()
